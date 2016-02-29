@@ -4,28 +4,40 @@ import java.util.List;
 
 public class GameStateImpl implements GameState {
 
+	private List<?> solution;
+	private GameStatus gameStatus;
+	private String message;
+	//
+	private final String NULL_VALUE_MSG = "A null value is not allowed";
+
 	@Override
 	public List<?> getSolution() {
 
-		throw new UnsupportedOperationException("Not implemented");
+		return solution;
 	}
 
 	@Override
 	public void setSolution(List<?> solution) {
 
-		throw new UnsupportedOperationException("Not implemented");
+		if (solution == null) {
+			throw new IllegalArgumentException(NULL_VALUE_MSG);
+		}
+		this.solution = solution;
 	}
 
 	@Override
 	public GameStatus getGameStatus() {
 
-		throw new UnsupportedOperationException("Not implemented");
+		return gameStatus;
 	}
 
 	@Override
 	public void setGameStatus(GameStatus gameStatus) {
 
-		throw new UnsupportedOperationException("Not implemented");
+		if (gameStatus == null) {
+			throw new IllegalArgumentException(NULL_VALUE_MSG);
+		}
+		this.gameStatus = gameStatus;
 	}
 
 	@Override
@@ -43,13 +55,13 @@ public class GameStateImpl implements GameState {
 	@Override
 	public String getMessage() {
 
-		throw new UnsupportedOperationException("Not implemented");
+		return message;
 	}
 
 	@Override
 	public void setMessage(String message) {
 
-		throw new UnsupportedOperationException("Not implemented");
+		this.message = message;
 	}
 
 }

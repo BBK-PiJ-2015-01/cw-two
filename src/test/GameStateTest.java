@@ -44,6 +44,15 @@ public class GameStateTest {
 		instance.setSolution(null);
 	}
 	
+	@Test
+	public void getGameSolutionAfterValidSetterTest() {
+
+		List<String> expectedGameSolution = Arrays.asList(new String[] {"Any string value here"});
+		instance.setSolution(expectedGameSolution);
+		List<?> resultGameSolution = instance.getSolution();
+		assertEquals(expectedGameSolution, resultGameSolution);;
+	}
+	
 	// ************************ Message tests *******************************
 	@Test
 	public void getGameStatus() {
