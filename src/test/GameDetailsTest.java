@@ -1,12 +1,12 @@
 package test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import mastermind.AttemptResultImpl;
 import mastermind.GameDetails;
 import mastermind.GameDetailsImpl;
 
@@ -87,5 +87,27 @@ public class GameDetailsTest {
 	public void setNumOfPermutationsToNegativeNumberTest() {
 
 		instance.setNumberOfPermutations(-1L);
+	}
+	
+	@Test
+	public void getNumOfPermutationssAfterValidSetterTest() {
+
+
+		Long expectedNumOfPermutations = 4L;
+		instance.setNumberOfAttempts(expectedNumOfPermutations);
+		
+		Long resultNumOfPermutations = instance.getNumberOfAttempts();
+		assertEquals(expectedNumOfPermutations, resultNumOfPermutations);
+	}
+	
+	// ************************ Pegs# tests *******************************
+
+	@Test
+	public void getGameChoicesNotSetTest() {
+
+		Map<?,?> expectedGameChoices = null;
+		Map<?,?> resultGameChoices = instance.getGameChoices();
+
+		assertEquals(expectedGameChoices, resultGameChoices);
 	}
 }
