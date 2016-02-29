@@ -107,4 +107,50 @@ public class AttemptResultTest {
 
 		assertEquals(expectedMessage, resultMessage);
 	}
+	
+
+	@Test(expected=IllegalArgumentException.class)
+	public void nullScoreConstructorsTest() {
+		
+		instance = new AttemptResultImpl(null,null);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void nullNearScoreConstructorsTest() {
+		
+		instance = new AttemptResultImpl(1L,null);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void nullExacScoreConstructorsTest() {
+		
+		instance = new AttemptResultImpl(null,1L);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void negativeNearScoreConstructorsTest() {
+		
+		instance = new AttemptResultImpl(1L,-1L);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void negativeExactScoreConstructorsTest() {
+		
+		instance = new AttemptResultImpl(-1L,1L);
+	}
+	@Test
+	public void validScoreConstructorsTest() {
+		
+		Long expectedExactScore = 1L;
+		Long expectedNearScore = 2L;
+		
+		instance = new AttemptResultImpl(expectedExactScore,expectedNearScore);
+		
+		Long resultExactScore = instance.getExactScore();
+		Long resultNearScore = instance.getNearScore();
+		
+		assertEquals(expectedExactScore, resultExactScore);
+		assertEquals(expectedNearScore, resultNearScore);
+	}
+	
 }
