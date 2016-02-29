@@ -3,6 +3,7 @@ package test;
 import static org.junit.Assert.assertEquals;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Before;
@@ -114,8 +115,35 @@ public class GameDetailsTest {
 	
 	@Test
 	public void setGameChoicesValidTest() {
+		
+		Map<Character,String> expectedGameChoices = new HashMap<>();
+		expectedGameChoices.put('G', "Green");
+
+		instance.setGameChoices(expectedGameChoices);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void setGameChoicesNullTest() {
+
+		instance.setGameChoices(null);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void setGameChoicesEmptyMapTest() {
 
 		instance.setGameChoices(Collections.EMPTY_MAP);
 	}
 	
+	@Test
+	public void getGameChoicesAfterValidSetterTest() {
+
+
+		Map<Character,String> expectedGameChoices = new HashMap<>();
+		expectedGameChoices.put('G', "Green");
+
+		instance.setGameChoices(expectedGameChoices);
+		
+		Map<?,?> resultGameChoices = instance.getGameChoices();
+		assertEquals(expectedGameChoices, resultGameChoices);
+	}
 }
