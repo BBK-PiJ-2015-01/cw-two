@@ -39,4 +39,11 @@ public class AttemptResultTest {
 		instance = new AttemptResultImpl();
 		instance.setExactScore(-1L);
 	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void setExactScoreNullArgTest() {
+		
+		instance = new AttemptResultImpl();
+		instance.setExactScore(null);
+	}
 }
