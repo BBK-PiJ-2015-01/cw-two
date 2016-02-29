@@ -25,5 +25,18 @@ public class AttemptResultTest {
 		
 		assertEquals(expectedScore, resultScore );
 	}
-
+	
+	@Test
+	public void setExactScoreNullTest() {
+		
+		instance = new AttemptResultImpl();
+		instance.setExactScore(0L);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void setExactScoreNegativeTest() {
+		
+		instance = new AttemptResultImpl();
+		instance.setExactScore(-1L);
+	}
 }
