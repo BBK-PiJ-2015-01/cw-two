@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -39,5 +40,14 @@ public class GameAttemptTest {
 	public void setAttempListWithNullListTest() {
 		
 		instance.setAttempt(null);
+	}
+	
+	@Test
+	public void getAttempListAfterValidSetterTest() {
+		
+		List<?> expectedAttemptList = Arrays.asList(new String[] {"Any string value here"});
+		instance.setAttempt(expectedAttemptList);
+		List<?> resultAttemptList = instance.getAttempt();
+		assertEquals(expectedAttemptList, resultAttemptList);
 	}
 }
