@@ -1,14 +1,17 @@
 package mastermind;
 
+import java.util.LinkedList;
 import java.util.List;
 
 public class GameStateImpl implements GameState {
 
 	private List<?> solution;
 	private GameStatus gameStatus;
+	private List<GameAttempt> gameHistory = new LinkedList<>();
 	private String message;
 	//
 	private final String NULL_VALUE_MSG = "A null value is not allowed";
+
 
 	@Override
 	public List<?> getSolution() {
@@ -43,13 +46,16 @@ public class GameStateImpl implements GameState {
 	@Override
 	public List<GameAttempt> getGameHistory() {
 
-		throw new UnsupportedOperationException("Not implemented");
+		return gameHistory;
 	}
 
 	@Override
 	public void addAttempt(GameAttempt attempt) {
 
-		throw new UnsupportedOperationException("Not implemented");
+		if (attempt == null) {
+			throw new IllegalArgumentException(NULL_VALUE_MSG);
+		}
+		gameHistory.add(attempt);
 	}
 
 	@Override
