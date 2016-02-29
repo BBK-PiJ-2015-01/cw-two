@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Collections;
 import java.util.Map;
 
 import org.junit.Before;
@@ -110,4 +111,11 @@ public class GameDetailsTest {
 
 		assertEquals(expectedGameChoices, resultGameChoices);
 	}
+	
+	@Test
+	public void setGameChoicesValidTest() {
+
+		instance.setGameChoices(Collections.EMPTY_MAP);
+	}
+	
 }
