@@ -2,6 +2,7 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.Before;
@@ -28,4 +29,15 @@ public class GameAttemptTest {
 		assertEquals(expectedAttemptList, resultAttemptList);
 	}
 
+	@Test
+	public void setAttempListWithEmptyListTest() {
+		
+		instance.setAttempt(Collections.EMPTY_LIST);
+	}	
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void setAttempListWithNullListTest() {
+		
+		instance.setAttempt(null);
+	}
 }
