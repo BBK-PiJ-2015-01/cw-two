@@ -24,8 +24,7 @@ public class GameAttemptTest {
 		instance = new GameAttemptImpl();
 	}
 
-	// *************************** Attempt list tests
-	// *********************************
+	// ************************ Attempt list tests *******************************
 
 	@Test
 	public void getAttempListNotSetTest() {
@@ -56,8 +55,7 @@ public class GameAttemptTest {
 		assertEquals(expectedAttemptList, resultAttemptList);
 	}
 
-	// *************************** GameResult tests
-	// *********************************
+	// ************************ GameResult tests *******************************
 
 	@Test
 	public void getAttemptResultNotSetTest() {
@@ -78,5 +76,31 @@ public class GameAttemptTest {
 
 		instance.setAttemptResult(null);
 	}
+	@Test
+	public void getAttempResultAfterValidSetterTest() {
 
+		AttemptResult expectedAttempResult = new AttemptResultImpl();
+		instance.setAttemptResult(expectedAttempResult);
+		AttemptResult resultAttempResult = instance.getAttemptResult();
+		assertEquals(expectedAttempResult, resultAttempResult);
+	}
+	
+	// ************************ Message tests *******************************
+
+	@Test
+	public void getMessageNotSetTest() {
+
+		String expectedMessage = null;
+		String resultMessage = instance.getMessage();
+		assertEquals(expectedMessage, resultMessage);
+	}
+
+	@Test
+	public void getMessageAfterValidSetterTest() {
+
+		String expectedMessage = "expectedMessage";
+		instance.setMessage(expectedMessage);
+		String resultMessage = instance.getMessage();
+		assertEquals(expectedMessage, resultMessage);
+	}
 }
