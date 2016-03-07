@@ -35,8 +35,40 @@ public class AttemptEvaluatorTest {
 	
 	@Test
 	public void testEmptyGameValue() {
-		AttemptResult expected = instance.evaluateGuess(Collections.EMPTY_LIST, dummySingleValueList);
-		assertNotNull(expected);
+		AttemptResult result = instance.evaluateGuess(Collections.EMPTY_LIST, dummySingleValueList);
+		assertNotNull(result);
+		Long expectedExactScore = 0L;
+		Long expectedNearScore = 0L;
+		Long resultExactScore = result.getExactScore();
+		Long resultNearScore = result.getNearScore();
+		assertEquals(expectedExactScore, resultExactScore);
+		assertEquals(expectedNearScore, resultNearScore);
+	}
+	
+	@Test
+	public void testEmptyGuessValue() {
+		AttemptResult result = instance.evaluateGuess(dummySingleValueList, Collections.EMPTY_LIST);
+		assertNotNull(result);
+		Long expectedExactScore = 0L;
+		Long expectedNearScore = 0L;
+		Long resultExactScore = result.getExactScore();
+		Long resultNearScore = result.getNearScore();
+		assertEquals(expectedExactScore, resultExactScore);
+		assertEquals(expectedNearScore, resultNearScore);
+	}
+	
+	@Test
+	public void testValidGuessValue() {
+		final List<?> testGameList = Arrays.asList(new Character[]{'A', 'B', 'C', 'D'});
+		final List<?> testGuessList = Arrays.asList(new Character[]{'A', 'B', 'C', 'D'});
+		
+		AttemptResult result = instance.evaluateGuess(testGameList, testGuessList);
+		Long expectedExactScore = 4L;
+		Long expectedNearScore = 0L;
+		Long resultExactScore = result.getExactScore();
+		Long resultNearScore = result.getNearScore();
+		assertEquals(expectedExactScore, resultExactScore);
+		assertEquals(expectedNearScore, resultNearScore);
 	}
 
 }

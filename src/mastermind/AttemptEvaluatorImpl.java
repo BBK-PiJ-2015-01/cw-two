@@ -9,6 +9,9 @@ public class AttemptEvaluatorImpl implements AttemptEvaluator {
 		if (guess == null || game == null) {
 			throw new NullPointerException();
 		}
+		if (game.isEmpty() || guess.isEmpty()) {
+			return new AttemptResultImpl(0L, 0L);
+		}
 		return null;
 	}
 

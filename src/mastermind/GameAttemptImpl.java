@@ -1,6 +1,5 @@
 package mastermind;
 
-import java.util.Collections;
 import java.util.List;
 
 public class GameAttemptImpl implements GameAttempt {
@@ -10,7 +9,6 @@ public class GameAttemptImpl implements GameAttempt {
 	private String message;
 	//
 	//
-	private final String NEGATIVE_VALUE_MSG = "A negative value is not allowed";
 	private final String NULL_VALUE_MSG = "A null value is not allowed";
 
 	@Override
