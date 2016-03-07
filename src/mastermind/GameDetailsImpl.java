@@ -12,6 +12,23 @@ public class GameDetailsImpl implements GameDetails {
 	private final String NULL_VALUE_MSG = "A null value is not allowed";
 	private final String EMPTY_COLLECTION_MSG = "An empty Collection is not allowed";
 
+	public GameDetailsImpl() {
+		
+	}
+	
+	public GameDetailsImpl(Long numOfAttempts, Long numOfPermutations, Map<?, ?> gameChoices) {
+
+		init(numOfAttempts, numOfPermutations, gameChoices);
+	}
+	
+	private void init(Long numOfAttempts, Long numOfPermutations, Map<?, ?> gameChoices) {
+		
+		setNumberOfAttempts(numOfAttempts);
+		setNumberOfPermutations(numOfPermutations);
+		setGameChoices(gameChoices);
+	}
+	
+
 	@Override
 	public Long getNumberOfAttempts() {
 

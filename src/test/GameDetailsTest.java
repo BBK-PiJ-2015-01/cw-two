@@ -21,6 +21,46 @@ public class GameDetailsTest {
 
 		instance = new GameDetailsImpl();
 	}
+	
+	// ************************ Constructor tests *******************************
+	@Test
+	public void constructorTest() {
+
+		Long expectedNumOfAttempts = 12L;
+		Long expectedNumOfPermutations = 4L;
+		instance = new GameDetailsImpl(expectedNumOfAttempts, expectedNumOfPermutations, getSixColourCharacterMap());
+		
+		
+		Long resultNumOfAttempts = instance.getNumberOfAttempts();
+		Long resultNumOfPermutations = instance.getNumberOfPermutations();
+
+		assertEquals(expectedNumOfAttempts, resultNumOfAttempts);
+		assertEquals(expectedNumOfPermutations, resultNumOfPermutations);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void illegalAttemptsConstructorTest() {
+
+		Long expectedNumOfAttempts = -1L;
+		Long expectedNumOfPermutations = 4L;
+		instance = new GameDetailsImpl(expectedNumOfAttempts, expectedNumOfPermutations, getSixColourCharacterMap());		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void illegalPermutationsConstructorTest() {
+
+		Long expectedNumOfAttempts = 12L;
+		Long expectedNumOfPermutations = -1L;
+		instance = new GameDetailsImpl(expectedNumOfAttempts, expectedNumOfPermutations, getSixColourCharacterMap());		
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void illegalGameMapConstructorTest() {
+
+		Long expectedNumOfAttempts = 12L;
+		Long expectedNumOfPermutations = 4L;
+		instance = new GameDetailsImpl(expectedNumOfAttempts, expectedNumOfPermutations, null);		
+	}
 
 	// ************************ Attempt# tests *******************************
 
@@ -46,7 +86,7 @@ public class GameDetailsTest {
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
-	public void setNumOfAttemptsTONegativeNumberTest() {
+	public void setNumOfAttemptsToNegativeNumberTest() {
 
 		instance.setNumberOfAttempts(-1L);
 	}
@@ -146,4 +186,16 @@ public class GameDetailsTest {
 		Map<?,?> resultGameChoices = instance.getGameChoices();
 		assertEquals(expectedGameChoices, resultGameChoices);
 	}
+	
+    private Map<Character, String> getSixColourCharacterMap() {
+   	 
+        Map<Character, String> returnMap = new HashMap<>();
+        returnMap.put('B', "blue");
+        returnMap.put('G', "green");
+        returnMap.put('O', "orange");
+        returnMap.put('P', "purple");
+        returnMap.put('R', "red");
+        returnMap.put('Y', "yellow");
+        return returnMap;
+    }
 }
