@@ -210,6 +210,38 @@ public class GameInstanceTest {
 		assertEquals(expectedGameHistorySize, resultGameHistorySize);	
 	}
 	
+	@Test
+	public void evaluateCorrectGuessGameHistoryTest() {
+
+		Long expectedAttempts = 12L;
+		Long expectedPermutations = 4L;
+		GameDetails expectedGameDetails = new GameDetailsImpl(expectedAttempts, expectedPermutations,
+				getSixColourCharacterMap());
+		instance = new GameInstanceImpl(expectedGameDetails);
+
+		GameState resultGameState = instance.getGameState();
+
+		GameAttempt correctGuess = new GameAttemptImpl();
+		correctGuess.setAttempt(resultGameState.getSolution());
+
+		instance.evaluateAttempt(correctGuess);
+		resultGameState = instance.getGameState();
+
+		int expectedGameHistorySize = 1;
+		int resultGameHistorySize = resultGameState.getGameHistory().size();
+		assertEquals(expectedGameHistorySize, resultGameHistorySize);	
+		
+		//
+		GameAttempt gameHistoryAttempt = resultGameState.getGameHistory().get(0);
+		Long expectedExactScore = 4L;
+		Long expectedNearScore = 0L;
+		
+		Long resultExactScore = gameHistoryAttempt.getAttemptResult().getExactScore();
+		Long resultNearScore = gameHistoryAttempt.getAttemptResult().getNearScore();
+		
+		assertEquals(expectedExactScore, resultExactScore);
+		assertEquals(expectedNearScore, resultNearScore);
+	}
 	
 	@Test
 	public void evaluateInCorrectGuessTest() {

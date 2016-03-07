@@ -34,10 +34,14 @@ public class GameInstanceImpl implements GameInstance {
 			throw new NullPointerException();
 		}
 
-		if (GameStatus.IN_PLAY == gameState.getGameStatus() && attemptCounter < gameDetails.getNumberOfAttempts()) {
+		if (!gameIsOver() && attemptCounter < gameDetails.getNumberOfAttempts()) {
 
 			attemptCounter++;
 			AttemptResult result = evaluator.evaluateGuess(gameState.getSolution(), attempt.getAttempt());
+			
+	        // Add the evaluation result to the attempt
+	        attempt.setAttemptResult(result);
+	        
 			if (result.getExactScore().equals(gameDetails.getNumberOfPermutations())) {
 				gameState.setGameStatus(GameStatus.SOLVED);
 			}
@@ -47,9 +51,16 @@ public class GameInstanceImpl implements GameInstance {
 
 			gameState.addAttempt(attempt);
 		}
-		return null;
+		return gameState;
 	}
 
+    private boolean gameIsOver() {
+        
+        // conditions for game-over status
+        return gameState.getGameStatus() == GameStatus.EXPIRED 
+                || gameState.getGameStatus() ==GameStatus.SOLVED;
+    }
+    
 	@Override
 	public GameState getGameState() {
 		// TODO Auto-generated method stub
