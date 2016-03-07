@@ -1,10 +1,11 @@
 package mastermind;
 
+import java.util.Collections;
 import java.util.List;
 
 public class GameAttemptImpl implements GameAttempt {
 
-	private List<?> attempt;
+	private List<?> attempt = Collections.EMPTY_LIST;
 	private AttemptResult attemptResult;
 	private String message;
 	//

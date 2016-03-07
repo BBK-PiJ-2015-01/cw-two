@@ -30,7 +30,7 @@ public class GameAttemptTest {
 	@Test
 	public void getAttempListNotSetTest() {
 
-		List<?> expectedAttemptList = null;
+		List<?> expectedAttemptList = Collections.EMPTY_LIST;
 		List<?> resultAttemptList = instance.getAttempt();
 		assertEquals(expectedAttemptList, resultAttemptList);
 	}
