@@ -200,6 +200,14 @@ public class GameInstanceTest {
 		GameStatus expectedGameStatus = GameStatus.SOLVED;
 		GameStatus resultGameStatus = resultGameState.getGameStatus();
 		assertEquals(expectedGameStatus, resultGameStatus);
+		
+		
+		// Ignore any further attempts after solutiuon
+		instance.evaluateAttempt(correctGuess);
+		resultGameState = instance.getGameState();
+		int expectedGameHistorySize = 1;
+		int resultGameHistorySize = resultGameState.getGameHistory().size();
+		assertEquals(expectedGameHistorySize, resultGameHistorySize);	
 	}
 	
 	
@@ -249,7 +257,16 @@ public class GameInstanceTest {
 		GameStatus expectedGameStatus = GameStatus.EXPIRED;
 		GameStatus resultGameStatus = resultGameState.getGameStatus();
 		assertEquals(expectedGameStatus, resultGameStatus);
+		
+		// Ignore any further attempts after expiration
+		instance.evaluateAttempt(incorrectAttempt);
+		resultGameState = instance.getGameState();
+		int expectedGameHistorySize = 1;
+		int resultGameHistorySize = resultGameState.getGameHistory().size();
+		assertEquals(expectedGameHistorySize, resultGameHistorySize);		
 	}
+	
+
 
 	// ***********************************************************************************
 	// Private methods here...
