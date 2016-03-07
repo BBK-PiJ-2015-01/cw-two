@@ -61,7 +61,6 @@ public class AttemptEvaluatorTest {
 	public void testValidGuessValue() {
 		final List<?> testGameList = Arrays.asList(new Character[]{'A', 'B', 'C', 'D'});
 		final List<?> testGuessList = Arrays.asList(new Character[]{'A', 'B', 'C', 'D'});
-		
 		AttemptResult result = instance.evaluateGuess(testGameList, testGuessList);
 		Long expectedExactScore = 4L;
 		Long expectedNearScore = 0L;
@@ -71,4 +70,17 @@ public class AttemptEvaluatorTest {
 		assertEquals(expectedNearScore, resultNearScore);
 	}
 
+	@Test
+	public void testInvalidGuessValue() {
+		final List<?> testGameList = Arrays.asList(new Character[]{'A', 'B', 'C', 'D'});
+		final List<?> testGuessList = Arrays.asList(new Character[]{'W', 'X', 'Y', 'Z'});
+		AttemptResult result = instance.evaluateGuess(testGameList, testGuessList);
+		Long expectedExactScore = 0L;
+		Long expectedNearScore = 0L;
+		Long resultExactScore = result.getExactScore();
+		Long resultNearScore = result.getNearScore();
+		assertEquals(expectedExactScore, resultExactScore);
+		assertEquals(expectedNearScore, resultNearScore);
+	}
+	
 }
