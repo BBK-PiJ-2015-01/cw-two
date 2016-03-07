@@ -83,4 +83,17 @@ public class AttemptEvaluatorTest {
 		assertEquals(expectedNearScore, resultNearScore);
 	}
 	
+	@Test
+	public void testNearGuessesValue() {
+		final List<?> testGameList = Arrays.asList(new Character[]{'A', 'B', 'C', 'D'});
+		final List<?> testGuessList = Arrays.asList(new Character[]{'W', 'X', 'A', 'B'});
+		AttemptResult result = instance.evaluateGuess(testGameList, testGuessList);
+		Long expectedExactScore = 0L;
+		Long expectedNearScore = 2L;
+		Long resultExactScore = result.getExactScore();
+		Long resultNearScore = result.getNearScore();
+		assertEquals(expectedExactScore, resultExactScore);
+		assertEquals(expectedNearScore, resultNearScore);
+	}
+	
 }
