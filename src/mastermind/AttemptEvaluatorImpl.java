@@ -12,6 +12,9 @@ public class AttemptEvaluatorImpl implements AttemptEvaluator {
 		if (game.isEmpty() || guess.isEmpty()) {
 			return new AttemptResultImpl(0L, 0L);
 		}
+		if (game.equals(guess)) {
+			return new AttemptResultImpl(new Long(game.size()), 0L);
+		}
 		return null;
 	}
 
