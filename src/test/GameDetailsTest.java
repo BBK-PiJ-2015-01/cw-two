@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +30,7 @@ public class GameDetailsTest {
 
 		Long expectedNumOfAttempts = 12L;
 		Long expectedNumOfPermutations = 4L;
-		instance = new GameDetailsImpl(expectedNumOfAttempts, expectedNumOfPermutations, getSixColourCharacterMap());
+		instance = new GameDetailsImpl(expectedNumOfAttempts, expectedNumOfPermutations, getTestGameValues());
 		
 		
 		Long resultNumOfAttempts = instance.getNumberOfAttempts();
@@ -43,7 +45,7 @@ public class GameDetailsTest {
 
 		Long expectedNumOfAttempts = -1L;
 		Long expectedNumOfPermutations = 4L;
-		instance = new GameDetailsImpl(expectedNumOfAttempts, expectedNumOfPermutations, getSixColourCharacterMap());		
+		instance = new GameDetailsImpl(expectedNumOfAttempts, expectedNumOfPermutations, getTestGameValues());		
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -51,7 +53,7 @@ public class GameDetailsTest {
 
 		Long expectedNumOfAttempts = 12L;
 		Long expectedNumOfPermutations = -1L;
-		instance = new GameDetailsImpl(expectedNumOfAttempts, expectedNumOfPermutations, getSixColourCharacterMap());		
+		instance = new GameDetailsImpl(expectedNumOfAttempts, expectedNumOfPermutations, getTestGameValues());		
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
@@ -147,8 +149,8 @@ public class GameDetailsTest {
 	@Test
 	public void getGameChoicesNotSetTest() {
 
-		Map<?,?> expectedGameChoices = null;
-		Map<?,?> resultGameChoices = instance.getGameChoices();
+		Set<?> expectedGameChoices = null;
+		Set<?> resultGameChoices = instance.getGameChoices();
 
 		assertEquals(expectedGameChoices, resultGameChoices);
 	}
@@ -156,8 +158,8 @@ public class GameDetailsTest {
 	@Test
 	public void setGameChoicesValidTest() {
 		
-		Map<Character,String> expectedGameChoices = new HashMap<>();
-		expectedGameChoices.put('G', "Green");
+		Set<Character> expectedGameChoices = new HashSet<>();
+		expectedGameChoices.add('G');
 
 		instance.setGameChoices(expectedGameChoices);
 	}
@@ -171,31 +173,31 @@ public class GameDetailsTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void setGameChoicesEmptyMapTest() {
 
-		instance.setGameChoices(Collections.EMPTY_MAP);
+		instance.setGameChoices(Collections.EMPTY_SET);
 	}
 	
 	@Test
 	public void getGameChoicesAfterValidSetterTest() {
 
 
-		Map<Character,String> expectedGameChoices = new HashMap<>();
-		expectedGameChoices.put('G', "Green");
+		Set<Character> expectedGameChoices = new HashSet<>();
+		expectedGameChoices.add('G');
 
 		instance.setGameChoices(expectedGameChoices);
 		
-		Map<?,?> resultGameChoices = instance.getGameChoices();
+		Set<?> resultGameChoices = instance.getGameChoices();
 		assertEquals(expectedGameChoices, resultGameChoices);
 	}
 	
-    private Map<Character, String> getSixColourCharacterMap() {
+    private Set<Character> getTestGameValues() {
    	 
-        Map<Character, String> returnMap = new HashMap<>();
-        returnMap.put('B', "blue");
-        returnMap.put('G', "green");
-        returnMap.put('O', "orange");
-        returnMap.put('P', "purple");
-        returnMap.put('R', "red");
-        returnMap.put('Y', "yellow");
+        Set<Character> returnMap = new HashSet<>();
+        returnMap.add('B');
+        returnMap.add('G');
+        returnMap.add('O');
+        returnMap.add('P');
+        returnMap.add('R');
+        returnMap.add('Y');
         return returnMap;
     }
 }
