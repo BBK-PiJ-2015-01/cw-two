@@ -3,10 +3,10 @@ package test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +37,7 @@ public class GameInstanceTest {
 		Long expectedAttempts = 12L;
 		Long expectedPermutations = 4L;
 		GameDetails expectedGameDetails = new GameDetailsImpl(expectedAttempts, expectedPermutations,
-				getSixColourCharacterMap());
+				getTestGameValues());
 		instance = new GameInstanceImpl(expectedGameDetails);
 	}
 
@@ -50,7 +50,7 @@ public class GameInstanceTest {
 		Long expectedAttempts = 12L;
 		Long expectedPermutations = 4L;
 		GameDetails expectedGameDetails = new GameDetailsImpl(expectedAttempts, expectedPermutations,
-				getSixColourCharacterMap());
+				getTestGameValues());
 		instance = new GameInstanceImpl(expectedGameDetails);
 
 		Long resultRemainingAttempts = instance.getRemainingAttempts();
@@ -62,7 +62,7 @@ public class GameInstanceTest {
 		Long expectedAttempts = 12L;
 		Long expectedPermutations = 4L;
 		GameDetails expectedGameDetails = new GameDetailsImpl(expectedAttempts, expectedPermutations,
-				getSixColourCharacterMap());
+				getTestGameValues());
 		instance = new GameInstanceImpl(expectedGameDetails);
 
 		instance.evaluateAttempt(new GameAttemptImpl());
@@ -81,7 +81,7 @@ public class GameInstanceTest {
 		Long expectedAttempts = 12L;
 		Long expectedPermutations = 4L;
 		GameDetails expectedGameDetails = new GameDetailsImpl(expectedAttempts, expectedPermutations,
-				getSixColourCharacterMap());
+				getTestGameValues());
 		instance = new GameInstanceImpl(expectedGameDetails);
 
 		GameDetails resultGameDetails = instance.getGameDetails();
@@ -97,7 +97,7 @@ public class GameInstanceTest {
 		Long expectedAttempts = 12L;
 		Long expectedPermutations = 4L;
 		GameDetails expectedGameDetails = new GameDetailsImpl(expectedAttempts, expectedPermutations,
-				getSixColourCharacterMap());
+				getTestGameValues());
 		instance = new GameInstanceImpl(expectedGameDetails);
 
 		GameState resultGameState = instance.getGameState();
@@ -110,7 +110,7 @@ public class GameInstanceTest {
 		Long expectedAttempts = 12L;
 		Long expectedPermutations = 4L;
 		GameDetails expectedGameDetails = new GameDetailsImpl(expectedAttempts, expectedPermutations,
-				getSixColourCharacterMap());
+				getTestGameValues());
 		instance = new GameInstanceImpl(expectedGameDetails);
 
 		GameState resultGameState = instance.getGameState();
@@ -123,7 +123,7 @@ public class GameInstanceTest {
 		Long expectedAttempts = 12L;
 		Long expectedPermutations = 4L;
 		GameDetails expectedGameDetails = new GameDetailsImpl(expectedAttempts, expectedPermutations,
-				getSixColourCharacterMap());
+				getTestGameValues());
 		instance = new GameInstanceImpl(expectedGameDetails);
 
 		GameState resultGameState = instance.getGameState();
@@ -138,7 +138,7 @@ public class GameInstanceTest {
 		Long expectedAttempts = 12L;
 		Long expectedPermutations = 4L;
 		GameDetails expectedGameDetails = new GameDetailsImpl(expectedAttempts, expectedPermutations,
-				getSixColourCharacterMap());
+				getTestGameValues());
 		instance = new GameInstanceImpl(expectedGameDetails);
 
 		GameState resultGameState = instance.getGameState();
@@ -153,7 +153,7 @@ public class GameInstanceTest {
 		Long expectedAttempts = 12L;
 		Long expectedPermutations = 4L;
 		GameDetails expectedGameDetails = new GameDetailsImpl(expectedAttempts, expectedPermutations,
-				getSixColourCharacterMap());
+				getTestGameValues());
 		instance = new GameInstanceImpl(expectedGameDetails);
 
 		instance.evaluateAttempt(new GameAttemptImpl());
@@ -175,7 +175,7 @@ public class GameInstanceTest {
 		Long expectedAttempts = 12L;
 		Long expectedPermutations = 4L;
 		GameDetails expectedGameDetails = new GameDetailsImpl(expectedAttempts, expectedPermutations,
-				getSixColourCharacterMap());
+				getTestGameValues());
 		instance = new GameInstanceImpl(expectedGameDetails);
 		instance.evaluateAttempt(null);
 	}
@@ -186,7 +186,7 @@ public class GameInstanceTest {
 		Long expectedAttempts = 12L;
 		Long expectedPermutations = 4L;
 		GameDetails expectedGameDetails = new GameDetailsImpl(expectedAttempts, expectedPermutations,
-				getSixColourCharacterMap());
+				getTestGameValues());
 		instance = new GameInstanceImpl(expectedGameDetails);
 
 		GameState resultGameState = instance.getGameState();
@@ -216,7 +216,7 @@ public class GameInstanceTest {
 		Long expectedAttempts = 12L;
 		Long expectedPermutations = 4L;
 		GameDetails expectedGameDetails = new GameDetailsImpl(expectedAttempts, expectedPermutations,
-				getSixColourCharacterMap());
+				getTestGameValues());
 		instance = new GameInstanceImpl(expectedGameDetails);
 
 		GameState resultGameState = instance.getGameState();
@@ -249,7 +249,7 @@ public class GameInstanceTest {
 		Long expectedAttempts = 12L;
 		Long expectedPermutations = 4L;
 		GameDetails expectedGameDetails = new GameDetailsImpl(expectedAttempts, expectedPermutations,
-				getSixColourCharacterMap());
+				getTestGameValues());
 		instance = new GameInstanceImpl(expectedGameDetails);
 
 		GameState resultGameState = instance.getGameState();
@@ -273,7 +273,7 @@ public class GameInstanceTest {
 		Long expectedAttempts = 1L;
 		Long expectedPermutations = 4L;
 		GameDetails expectedGameDetails = new GameDetailsImpl(expectedAttempts, expectedPermutations,
-				getSixColourCharacterMap());
+				getTestGameValues());
 		instance = new GameInstanceImpl(expectedGameDetails);
 
 		GameState resultGameState = instance.getGameState();
@@ -303,15 +303,15 @@ public class GameInstanceTest {
 	// ***********************************************************************************
 	// Private methods here...
 	// ***********************************************************************************
-	private Map<Character, String> getSixColourCharacterMap() {
+	private Set<Character> getTestGameValues() {
 
-		Map<Character, String> returnMap = new HashMap<>();
-		returnMap.put('B', "blue");
-		returnMap.put('G', "green");
-		returnMap.put('O', "orange");
-		returnMap.put('P', "purple");
-		returnMap.put('R', "red");
-		returnMap.put('Y', "yellow");
+		Set<Character> returnMap = new HashSet<>();
+		returnMap.add('B');
+		returnMap.add('G');
+		returnMap.add('O');
+		returnMap.add('P');
+		returnMap.add('R');
+		returnMap.add('Y');
 		return returnMap;
 	}
 }
