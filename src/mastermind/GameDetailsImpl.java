@@ -1,12 +1,12 @@
 package mastermind;
 
-import java.util.Map;
+import java.util.Set;
 
 public class GameDetailsImpl implements GameDetails {
 
 	private Long numOfAttempts;
 	private Long numOfPermutations;
-	private Map<?, ?> gameChoices;
+	private Set<?> gameChoices;
 	//
 	private final String NEGATIVE_VALUE_MSG = "A negative value is not allowed";
 	private final String NULL_VALUE_MSG = "A null value is not allowed";
@@ -16,12 +16,12 @@ public class GameDetailsImpl implements GameDetails {
 		
 	}
 	
-	public GameDetailsImpl(Long numOfAttempts, Long numOfPermutations, Map<?, ?> gameChoices) {
+	public GameDetailsImpl(Long numOfAttempts, Long numOfPermutations, Set<?> gameChoices) {
 
 		init(numOfAttempts, numOfPermutations, gameChoices);
 	}
 	
-	private void init(Long numOfAttempts, Long numOfPermutations, Map<?, ?> gameChoices) {
+	private void init(Long numOfAttempts, Long numOfPermutations, Set<?> gameChoices) {
 		
 		setNumberOfAttempts(numOfAttempts);
 		setNumberOfPermutations(numOfPermutations);
@@ -66,12 +66,12 @@ public class GameDetailsImpl implements GameDetails {
 	}
 
 	@Override
-	public Map<?, ?> getGameChoices() {
+	public Set<?> getGameChoices() {
 		return gameChoices;
 	}
 
 	@Override
-	public void setGameChoices(Map<?, ?> gameChoices) {
+	public void setGameChoices(Set<?> gameChoices) {
 		
 		if (gameChoices == null) {
 			throw new IllegalArgumentException(NULL_VALUE_MSG);
