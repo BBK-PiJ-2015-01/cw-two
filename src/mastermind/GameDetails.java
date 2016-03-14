@@ -1,6 +1,6 @@
 package mastermind;
 
-import java.util.Map;
+import java.util.Set;
 
 public interface GameDetails {
 	
@@ -12,7 +12,7 @@ public interface GameDetails {
 
 	void setNumberOfPermutations(Long numberOfPermutations); 
 
-	Map<?, ?> getGameChoices(); 
+	Set<?> getGameChoices(); 
 
-	void setGameChoices(Map<?, ?> gameChoices);
+	void setGameChoices(Set<?> gameChoices);
 }
