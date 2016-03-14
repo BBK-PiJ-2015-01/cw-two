@@ -20,7 +20,7 @@ public class GameInstanceImpl implements GameInstance {
 		Random r = new Random();
 		List<?> solution = java.util.stream.LongStream
 				.rangeClosed(1, gameDetails.getNumberOfPermutations()).mapToObj(i -> (gameDetails.getGameChoices()
-						.keySet().toArray()[r.nextInt(gameDetails.getGameChoices().size())]))
+						.toArray()[r.nextInt(gameDetails.getGameChoices().size())]))
 				.collect(Collectors.toList());
 		gameState.setSolution(solution);
 		gameState.setGameStatus(GameStatus.IN_PLAY);
@@ -63,7 +63,7 @@ public class GameInstanceImpl implements GameInstance {
     
 	@Override
 	public GameState getGameState() {
-		// TODO Auto-generated method stub
+
 		return gameState;
 	}
 
