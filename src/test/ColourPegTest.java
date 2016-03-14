@@ -14,20 +14,16 @@ public class ColourPegTest {
 	public void setUp() throws Exception {
 	}
 
-	@Test
+	@Test(expected = IllegalArgumentException.class)
 	public void colourIsNotNullTest() {
-		
-		Colour instance = new ColourPeg();
-		String resultColour = instance.getColour();
-		assertNotNull(resultColour);
+
+		new ColourPeg(null);
 	}
-	
-	@Test
+
+	@Test(expected = IllegalArgumentException.class)
 	public void colourIsNotEmptyTest() {
-		
-		Colour instance = new ColourPeg();
-		String resultColour = instance.getColour();
-		assertFalse(resultColour.isEmpty());
+
+		new ColourPeg("");
 	}
 
 }
