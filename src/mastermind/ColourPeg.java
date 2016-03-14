@@ -1,17 +1,16 @@
 package mastermind;
 
 public class ColourPeg implements Colour, Tokeniser<Character> {
-	
-	 private final String colour;
-	
-	 public ColourPeg(String colour){
-		 
-		 if (colour == null || colour.isEmpty()) {
-			 throw new IllegalArgumentException();
-		 }
-		 this.colour = colour;
-	 }
-	
+
+	private final String colour;
+
+	public ColourPeg(String colour) {
+
+		if (colour == null || colour.isEmpty()) {
+			throw new IllegalArgumentException();
+		}
+		this.colour = colour;
+	}
 
 	@Override
 	public String getColour() {
@@ -25,16 +24,14 @@ public class ColourPeg implements Colour, Tokeniser<Character> {
 		return colour.toUpperCase().charAt(0);
 	}
 
-
 	@Override
 	public int hashCode() {
-		
+
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((getToken() == null) ? 0 : getToken().hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -51,5 +48,10 @@ public class ColourPeg implements Colour, Tokeniser<Character> {
 		} else if (!getToken().equals(other.getToken()))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return getColour();
 	}
 }

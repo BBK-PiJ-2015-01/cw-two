@@ -1,5 +1,6 @@
 package mastermind;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,29 +12,40 @@ public class SimpleGameTest {
 		new SimpleGameTest().runGame();
 
 	}
-	
+
 	private void runGame() {
-		
-		GameDetails details = new GameDetailsImpl(12L, 4L, getTestGameValues());		
+
+		GameDetails details = new GameDetailsImpl(12L, 4L, getTestGameValues());
 		GameInstanceImpl theGame = new GameInstanceImpl(details);
 		GameInputterImpl inputter = new GameInputterImpl();
 		inputter.setGameValues(getTestGameValues());
 		GameState state = theGame.getGameState();
-		while(state.getGameStatus() == GameStatus.IN_PLAY) {
-			
-			System.out.print("Enter a guess >");
+		GameOutputter out = new GameOutputterImpl();
+		OutputFormatter formatter = null;
+		try {
+			formatter = new OutputFormatterImpl(out);
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		formatter.outputGameDetails(theGame);
+		while (state.getGameStatus() == GameStatus.IN_PLAY) {
+
+			formatter.outputAttemptPrompt(theGame);
+
 			GameAttempt attempt = inputter.readAttempt();
-			System.out.println("Attempt was " + attempt );
+
 			state = theGame.evaluateAttempt(attempt);
 			List<GameAttempt> history = state.getGameHistory();
-			AttemptResult lastAttempt = history.get(history.size()-1).getAttemptResult();
-			System.out.println(String.format("You got %d right and %d close",lastAttempt.getExactScore(), lastAttempt.getNearScore()));
-			
+			AttemptResult lastAttempt = history.get(history.size() - 1).getAttemptResult();
+			System.out.println(String.format("You got %d right and %d close", lastAttempt.getExactScore(),
+					lastAttempt.getNearScore()));
+
 		}
-		
-		System.out.println(theGame.getRemainingAttempts() == 0L ? "You lose" : "You WIN!" );
+
+		System.out.println(theGame.getRemainingAttempts() == 0L ? "You lose" : "You WIN!");
 	}
-	
+
 	private Set<Tokeniser<Character>> getTestGameValues() {
 
 		Set<Tokeniser<Character>> returnMap = new HashSet<>();
