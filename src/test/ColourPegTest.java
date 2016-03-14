@@ -44,7 +44,7 @@ public class ColourPegTest {
 	public void tokenIsValidTest() {
 
 		Character expectedToken = 'G';
-		Tokeniser instance = new ColourPeg("Green");
+		Tokeniser<Character> instance = new ColourPeg("Green");
 		Character resultToken = instance.getToken();
 		assertEquals(expectedToken, resultToken );
 	}

@@ -1,6 +1,6 @@
 package mastermind;
 
-public interface Tokeniser {
+public interface Tokeniser<T> {
 
-	Character getToken();
+	T getToken();
 }
