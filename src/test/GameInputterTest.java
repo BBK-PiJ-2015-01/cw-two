@@ -84,18 +84,12 @@ public class GameInputterTest {
 		List<?> expectedGuess = Arrays.asList(new ColourPeg[] { new ColourPeg("Green"), new ColourPeg("Blue"),
 				new ColourPeg("Red"), new ColourPeg("Yellow") });
 
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-
-				GameAttempt result = instance.readAttempt();
-				List<?> resultGuess = result.getAttempt();
-				assertEquals(expectedGuess, resultGuess);
-			}
-		}).start();
-
 		testOut.println(testString);
+
+		GameAttempt result = instance.readAttempt();
+		List<?> resultGuess = result.getAttempt();
+		assertEquals(expectedGuess, resultGuess);
+
 	}
 
 	@Test
@@ -107,20 +101,12 @@ public class GameInputterTest {
 		List<?> expectedGuess = Arrays.asList(new ColourPeg[] { new ColourPeg("Green"), new ColourPeg("Blue"),
 				new ColourPeg("Red"), new ColourPeg("Yellow") });
 
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-
-				GameAttempt result = instance.readAttempt();
-				List<?> resultGuess = result.getAttempt();
-				assertNotEquals(expectedGuess, resultGuess);
-			}
-		}).start();
-
 		testOut.println(testString);
-	}
 
+		GameAttempt result = instance.readAttempt();
+		List<?> resultGuess = result.getAttempt();
+		assertNotEquals(expectedGuess, resultGuess);
+	}
 
 	// **********************************************************************
 	// Tests for command
@@ -132,20 +118,13 @@ public class GameInputterTest {
 
 		String testString = ":X";
 		GameCommand expectedCommand = GameCommand.EXIT;
-		
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-
-				GameCommand resultCommand = instance.getCommand();
-				assertEquals(expectedCommand, resultCommand);
-			}
-		}).start();
 
 		testOut.println(testString);
+
+		GameCommand resultCommand = instance.getCommand();
+		assertEquals(expectedCommand, resultCommand);
 	}
-	
+
 	@Test
 	public void readInvalidGameCommandTest() {
 
@@ -153,21 +132,13 @@ public class GameInputterTest {
 
 		String testString = "Not a valid command";
 		GameCommand expectedCommand = null;
-		
-		new Thread(new Runnable() {
-
-			@Override
-			public void run() {
-
-				GameCommand resultCommand = instance.getCommand();
-				assertEquals(expectedCommand, resultCommand);
-			}
-		}).start();
 
 		testOut.println(testString);
+
+		GameCommand resultCommand = instance.getCommand();
+		assertEquals(expectedCommand, resultCommand);
 	}
-	
-	
+
 	private Set<Tokeniser<Character>> getTestGameValues() {
 
 		Set<Tokeniser<Character>> returnMap = new HashSet<>();

@@ -12,7 +12,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import mastermind.GameCommand;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class GameInputterImpl implements GameInputter {
 
@@ -23,6 +24,8 @@ public class GameInputterImpl implements GameInputter {
 
 	private Set<Tokeniser<Character>> gameValues;
 	private Set<? extends Tokeniser<String>> commandValues = EnumSet.allOf(GameCommand.class);
+	//
+	private final Predicate<? super Tokeniser<?>> nullsPredicate = t -> t != null;
 
 	public GameInputterImpl() {
 
@@ -58,13 +61,11 @@ public class GameInputterImpl implements GameInputter {
 			// Treat all input as a stream of characters
 			s = s.replaceAll("\\s", "");
 			
-		
+			// Collect the string characters into a list
+	        List<?> chars = s.toUpperCase().chars().mapToObj(i -> Character.valueOf((char) i))
+	                .collect(Collectors.toList());
 
-			List<Character> chars = new LinkedList<>();
-			for (int i = 0; i < s.length(); i++) {
-				chars.add(s.charAt(i));
-			}
-			System.out.println(chars + " was input");
+	        // Map the character list to a list of tokens, in this case game pegs
 			List<?> selectedTokens = mapTokenToObject(chars, gameValues);
 			result.setAttempt(selectedTokens);
 			
@@ -82,15 +83,9 @@ public class GameInputterImpl implements GameInputter {
 		GameCommand result = null;
 		try {
 			
-			String s = reader.readLine();
-			// Treat all input as a stream of characters
+			String s = reader.readLine();			
 			s = s.trim();
-
-			List<Character> chars = new LinkedList<>();
-			for (int i = 0; i < s.length(); i++) {
-				chars.add(s.charAt(i));
-			}
-
+			// Use the supplied string to map to a command
 			List<?> selectedTokens = mapTokenToObject(Arrays.asList(new String[]{s}), commandValues);
 			result = selectedTokens.isEmpty() ? null : (GameCommand) selectedTokens.get(0);
 			
@@ -108,7 +103,7 @@ public class GameInputterImpl implements GameInputter {
 	}
 
 	//
-	// Helper method to translate Chars to ColourPegs
+	// Helper method to translate to tokens.
 	//
 	private List<?> mapTokenToObject(Collection<?> input, Set<? extends Tokeniser<?>> tokens) {
 
@@ -120,16 +115,9 @@ public class GameInputterImpl implements GameInputter {
 		if (input.isEmpty() || tokens.isEmpty()) {
 			return Collections.EMPTY_LIST;
 		}
-		List<Tokeniser<?>> returnList = new LinkedList<>();
-		for(Object i : input) {
-			for (Tokeniser<?> token : tokens) {
-				if (token.getToken().equals(i)) {
-					returnList.add(token);
-				}
-			}
-		}
-		return returnList;
+        // Map the input string to available tokens
+        return input.stream()
+                .map(c -> tokens.stream().filter(token -> token.getToken().equals(c)).findAny().orElse(null))
+                .filter(nullsPredicate).collect(Collectors.toList());
 	}
-
-
 }
