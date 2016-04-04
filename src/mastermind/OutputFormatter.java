@@ -15,5 +15,7 @@ public interface OutputFormatter {
     void outputSuccessMessage(GameInstance instance);
  
     void outputFailedMessage(GameInstance instance);
+    
+    void outputFinalMessage();
  
 }

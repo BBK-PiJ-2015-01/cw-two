@@ -15,9 +15,9 @@ public class SimpleGameTest {
 
 	private void runGame() {
 
-		GameDetails details = new GameDetailsImpl(12L, 4L, getTestGameValues());
+		GameDetails details = new GameDetailsImpl(12L, 4L, getTestGameValues()); // from factory
 		GameInstanceImpl theGame = new GameInstanceImpl(details);
-		GameInputterImpl inputter = new GameInputterImpl();
+		GameInputterImpl inputter = new GameInputterImpl(); // from factory
 		inputter.setGameValues(getTestGameValues());
 		GameState state = theGame.getGameState();
 		GameOutputter out = new GameOutputterImpl();
