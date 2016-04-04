@@ -1,0 +1,12 @@
+Mastermind
+
+'java mastermind.MastermindDriver' will run the game and changing the boolean value in main() will enable the game to run in easy mode.
+
+New games configurations can be added in MastermindGameFactory and all games can be defined in three parameters: no. of attempts, no. of pegs and a set
+of pegs to chose from (see GameDetails.java)
+
+AttemptEvauluator will match type of guesses against any type of pegs but to use the normal command line the GameInputter converts from a Character
+to a <? extends Tokeniser<String> type so any new GameDetails to should take this into consideration (see MastermindGameFactory)
+
+All output prompts and messages are contained in outputFormatter.properties if changes are required.
+
