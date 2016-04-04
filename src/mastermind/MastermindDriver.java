@@ -7,13 +7,7 @@ public class MastermindDriver {
 	private GameDetailsFactory gameFactory;
 	private GameInputterFactory inputterFactory;
 
-	// Example - change as you need to...
 	public static void main(String[] args) {
-		// Game g = Factory.getInstance(Game.class, true);
-		// g.runGames();
-
-		// g = Factory.getInstance(Game.class, false);
-		// g.runGames();
 
 		new MastermindDriver().runGame(false);
 	}

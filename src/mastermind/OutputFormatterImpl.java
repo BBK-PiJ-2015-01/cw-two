@@ -3,7 +3,10 @@ package mastermind;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 public class OutputFormatterImpl implements OutputFormatter {
 
@@ -75,7 +78,8 @@ public class OutputFormatterImpl implements OutputFormatter {
 				score = score + String.format(scoreFormat, properties.getProperty("nearGuess"),
 						attempt.getAttemptResult().getNearScore());
 			}
-			out.outputLine(String.format(gameHistoryFormat, attempt.getAttempt().toString(), score));
+			List<?> firstLetters = attempt.getAttempt().stream().map(a -> a.toString().charAt(0)).collect(Collectors.toList());
+			out.outputLine(String.format(gameHistoryFormat, firstLetters, score));
 		}
 		// Empty line for unused attempts
 		for (long remaining = 0; remaining < instance.getRemainingAttempts(); remaining++) {
@@ -123,8 +127,9 @@ public class OutputFormatterImpl implements OutputFormatter {
 
 		// Supply the solution to the format
 		String format = properties.getProperty(FAILED_FORMAT_NAME);
+		List<?> firstLetters = instance.getGameState().getSolution().stream().map(a -> a.toString().charAt(0)).collect(Collectors.toList());
 		String outputMessage = format == null ? "No failed format found"
-				: String.format(format, instance.getGameState().getSolution().toString());
+				: String.format(format, firstLetters);
 		out.outputLine(outputMessage);
 	}
 
