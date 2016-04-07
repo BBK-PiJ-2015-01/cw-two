@@ -2,6 +2,16 @@ package mastermind;
 
 import java.util.Set;
 
+/**
+* Implementation for the GameDetails interface.
+* 
+* A GameDetails object provides getters and setter for the number of attempts that will
+* be allowed, the number of permutations in the secret code and the type of entities the
+* code can consist of (for extensibility this could be a set of anything) 
+*
+*@author Simon Baird & Johannes Neethling
+*/
+
 public class GameDetailsImpl implements GameDetails {
 
 	private Long numOfAttempts;
@@ -16,6 +26,14 @@ public class GameDetailsImpl implements GameDetails {
 		
 	}
 	
+	/**
+	 * Constructor
+	 * 
+	 * @param Long: the number of attempts
+	 * @param Long: the number of permutations
+	 * @param Set: the set of entities
+	 *
+	 */
 	public GameDetailsImpl(Long numOfAttempts, Long numOfPermutations, Set<?> gameChoices) {
 
 		init(numOfAttempts, numOfPermutations, gameChoices);
@@ -28,13 +46,18 @@ public class GameDetailsImpl implements GameDetails {
 		setGameChoices(gameChoices);
 	}
 	
-
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public Long getNumberOfAttempts() {
 
 		return numOfAttempts;
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public void setNumberOfAttempts(Long numberOfAttempts) {
 
@@ -47,12 +70,18 @@ public class GameDetailsImpl implements GameDetails {
 		numOfAttempts = numberOfAttempts;
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public Long getNumberOfPermutations() {
 
 		return numOfPermutations;
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public void setNumberOfPermutations(Long numberOfPermutations) {
 
@@ -65,11 +94,17 @@ public class GameDetailsImpl implements GameDetails {
 		numOfPermutations = numberOfPermutations;
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public Set<?> getGameChoices() {
 		return gameChoices;
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public void setGameChoices(Set<?> gameChoices) {
 		
