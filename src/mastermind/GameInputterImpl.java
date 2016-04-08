@@ -15,6 +15,15 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+* A GameInputter handles the conversion of user input
+* 
+* A GameInputter handles the conversion of user input into choice entities
+* or game commands
+*
+*@author Simon Baird & Johannes Neethling
+*/
+
 public class GameInputterImpl implements GameInputter {
 
 	// Stream to read from
@@ -50,7 +59,9 @@ public class GameInputterImpl implements GameInputter {
 		this.gameValues = gameValues;
 	}
 
-	
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public GameAttempt readAttempt() {
 
@@ -77,6 +88,9 @@ public class GameInputterImpl implements GameInputter {
 		return result;
 	}
 	
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public GameCommand getCommand() {
 
@@ -96,6 +110,9 @@ public class GameInputterImpl implements GameInputter {
 		return result;
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public String getMessage() {
 		// TODO Auto-generated method stub
