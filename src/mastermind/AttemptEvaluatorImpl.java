@@ -12,7 +12,7 @@ import static java.util.function.Function.identity;
 * An AttemptEvaluator produces the score for an attempt by comparing the
 * players guess with the secret code
 *
-**@author Simon Baird & Johannes Neethling
+*@author Simon Baird & Johannes Neethling
 */
 public class AttemptEvaluatorImpl implements AttemptEvaluator {
 
