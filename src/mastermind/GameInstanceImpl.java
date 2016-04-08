@@ -4,6 +4,15 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+/**
+* Implementation of the GameInstance interface.
+* 
+* A GameInstance manages the instances of a game by generating a secret code,
+* controlling the evaluation of attempts and maintaining the game status
+*
+*@author Simon Baird & Johannes Neethling
+*/
+
 public class GameInstanceImpl implements GameInstance {
 
 	private final GameDetails gameDetails;
@@ -12,6 +21,12 @@ public class GameInstanceImpl implements GameInstance {
 
 	Long attemptCounter = 0L;
 
+	/**
+	 * Constructor
+	 * 
+	 * @param GameDetails: the configuration of the game instance
+	 *
+	 */
 	public GameInstanceImpl(GameDetails gameDetails) {
 		super();
 		this.gameDetails = gameDetails;
@@ -27,6 +42,9 @@ public class GameInstanceImpl implements GameInstance {
 		evaluator = new AttemptEvaluatorImpl();
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public GameState evaluateAttempt(GameAttempt attempt) {
 
@@ -61,18 +79,27 @@ public class GameInstanceImpl implements GameInstance {
                 || gameState.getGameStatus() ==GameStatus.SOLVED;
     }
     
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public GameState getGameState() {
 
 		return gameState;
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public GameDetails getGameDetails() {
 
 		return gameDetails;
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public Long getRemainingAttempts() {
 

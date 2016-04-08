@@ -1,9 +1,9 @@
 package mastermind;
 
 /**
-* An OutputFormatter displays output.
+* An OutputFormatter formats output for display.
 * 
-* An OutputFormatter displays output with the aid of properties file.
+* An OutputFormatter formats output for display with the aid of properties file.
 *
 */
 

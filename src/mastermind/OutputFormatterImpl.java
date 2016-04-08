@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 /**
 * Implementation of the OutputFormatter interface.
 * 
-* An OutputFormatter displays output with the aid of properties file.
+* An OutputFormatter formats output for display with the aid of properties file.
 * 
 * @author Simon Baird & Johannes Neethling
 */
