@@ -3,10 +3,17 @@ package mastermind;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
+
+/**
+* Implementation of the OutputFormatter interface.
+* 
+* An OutputFormatter displays output with the aid of properties file.
+* 
+* @author Simon Baird & Johannes Neethling
+*/
 
 public class OutputFormatterImpl implements OutputFormatter {
 
@@ -24,6 +31,14 @@ public class OutputFormatterImpl implements OutputFormatter {
 	private final String FAILED_FORMAT_NAME = "failedFormat";
 	private final String FINAL_MESSAGE = "finalMessage";
 
+	/**
+	 * Constructor
+	 * 
+	 *@param GameOutputter: the game outputter object
+	 *@throws FileNotFoundException if the properties file cannot be found
+	 *@throws IOException if the properties file cannot be read
+	 */
+	
 	public OutputFormatterImpl(GameOutputter out) throws FileNotFoundException, IOException {
 
 		this.out = out;
@@ -33,6 +48,9 @@ public class OutputFormatterImpl implements OutputFormatter {
 		// properties.load(new FileInputStream(PROPERTIES_FILE_NAME));
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public void outputGameDetails(GameInstance instance) {
 
@@ -49,6 +67,9 @@ public class OutputFormatterImpl implements OutputFormatter {
 		out.outputLine(outputMessage);
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public void outputSolution(GameInstance instance) {
 
@@ -61,6 +82,9 @@ public class OutputFormatterImpl implements OutputFormatter {
 
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public void outputGameHistory(GameInstance instance) {
 
@@ -87,6 +111,9 @@ public class OutputFormatterImpl implements OutputFormatter {
 		}
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public void outputAttemptPrompt(GameInstance instance) {
 
@@ -99,6 +126,9 @@ public class OutputFormatterImpl implements OutputFormatter {
 
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public void outputCommandPrompt(GameInstance instance) {
 
@@ -111,6 +141,9 @@ public class OutputFormatterImpl implements OutputFormatter {
 		out.output(outputMessage);
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public void outputSuccessMessage(GameInstance instance) {
 
@@ -122,6 +155,9 @@ public class OutputFormatterImpl implements OutputFormatter {
 		out.outputLine(outputMessage);
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public void outputFailedMessage(GameInstance instance) {
 
@@ -133,6 +169,9 @@ public class OutputFormatterImpl implements OutputFormatter {
 		out.outputLine(outputMessage);
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public void outputFinalMessage() {
 		// Output the final message
@@ -141,6 +180,9 @@ public class OutputFormatterImpl implements OutputFormatter {
 
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	private String nStrings(String text, long times) {
 		if (times == 0) {
 			return "";
