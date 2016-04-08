@@ -3,8 +3,21 @@ package mastermind;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+* Implementation for the GameDetailsFactory & GameInputterFactory interfaces.
+* 
+* A MastermindGameFactory produces an instance of the game with a certain configuration,
+* sets the type of entities to be used (default is some colours in this impl, but this can be
+* extended) and also produces a inputter object.
+*
+*@author Simon Baird & Johannes Neethling
+*/
+
 public class MastermindGameFactory implements GameDetailsFactory, GameInputterFactory {
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public GameInstanceImpl getGameInstance(String gameType) {
 		// TODO Auto-generated method stub
@@ -22,6 +35,9 @@ public class MastermindGameFactory implements GameDetailsFactory, GameInputterFa
 
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public GameInputter getGameInputter(String gameType) {
 
