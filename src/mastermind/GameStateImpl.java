@@ -3,6 +3,15 @@ package mastermind;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+* Implementation for the GameState interface.
+* 
+* A GameState encapsulates the state of each running game and
+* the history of player attempts at solving the code
+*
+**@author Simon Baird & Johannes Neethling
+*/
+
 public class GameStateImpl implements GameState {
 
 	private List<?> solution;
@@ -13,12 +22,18 @@ public class GameStateImpl implements GameState {
 	private final String NULL_VALUE_MSG = "A null value is not allowed";
 
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public List<?> getSolution() {
 
 		return solution;
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public void setSolution(List<?> solution) {
 
@@ -28,12 +43,18 @@ public class GameStateImpl implements GameState {
 		this.solution = solution;
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public GameStatus getGameStatus() {
 
 		return gameStatus;
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public void setGameStatus(GameStatus gameStatus) {
 
@@ -43,12 +64,18 @@ public class GameStateImpl implements GameState {
 		this.gameStatus = gameStatus;
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public List<GameAttempt> getGameHistory() {
 
 		return gameHistory;
 	}
-
+	
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public void addAttempt(GameAttempt attempt) {
 
@@ -58,12 +85,18 @@ public class GameStateImpl implements GameState {
 		gameHistory.add(attempt);
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public String getMessage() {
 
 		return message;
 	}
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public void setMessage(String message) {
 
