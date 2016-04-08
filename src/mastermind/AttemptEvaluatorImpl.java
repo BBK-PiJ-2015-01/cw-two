@@ -6,8 +6,19 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import static java.util.function.Function.identity;
 
+/**
+* Implementation for the AttemptEvaluator interface.
+* 
+* An AttemptEvaluator produces the score for an attempt by comparing the
+* players guess with the secret code
+*
+**@author Simon Baird & Johannes Neethling
+*/
 public class AttemptEvaluatorImpl implements AttemptEvaluator {
 
+	/**
+	* {@inheritDoc}
+	*/
 	@Override
 	public AttemptResult evaluateGuess(List<?> game, List<?> guess) {
 		if (guess == null || game == null) {
